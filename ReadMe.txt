@@ -8,6 +8,13 @@ Negative major cases like Fx not existing, or attempt to save the same rate twic
 But edge/negative cases in numeric inputs and validations not covered, spending too much time on the task.
 Thus, not all classes might have an attached unit test.
 
+MISSING AREAS :
+
+Validation tests both on web service and service.
+Some very edge cases.
+Calculating the return for a series of deals by all customers.
+
+
 TECHNOLOGY STACK
 Easily can be listed from pom.xml but here in case :
 
