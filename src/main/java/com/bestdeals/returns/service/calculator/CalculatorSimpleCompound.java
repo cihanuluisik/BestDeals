@@ -1,4 +1,4 @@
-package com.bestdeals.returns.calculator;
+package com.bestdeals.returns.service.calculator;
 
 import com.bestdeals.returns.domain.Interval;
 

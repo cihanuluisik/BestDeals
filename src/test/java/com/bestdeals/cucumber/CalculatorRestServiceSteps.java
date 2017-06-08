@@ -1,10 +1,10 @@
 package com.bestdeals.cucumber;
 
 import com.bestdeals.ReturnCalculatorApplication;
-import com.bestdeals.returns.builder.CalculateParamsBuilder;
 import com.bestdeals.returns.domain.Deal;
 import com.bestdeals.returns.domain.Interval;
 import com.bestdeals.returns.endpoint.CalculateParams;
+import com.bestdeals.returns.endpoint.builder.CalculateParamsBuilder;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

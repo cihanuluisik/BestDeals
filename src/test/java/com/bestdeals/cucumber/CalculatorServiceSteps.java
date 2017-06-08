@@ -1,11 +1,11 @@
 package com.bestdeals.cucumber;
 
 import com.bestdeals.ReturnCalculatorApplication;
-import com.bestdeals.returns.builder.CalculateParamsBuilder;
 import com.bestdeals.returns.domain.Deal;
 import com.bestdeals.returns.domain.FxRate;
 import com.bestdeals.returns.domain.Interval;
 import com.bestdeals.returns.endpoint.CalculateParams;
+import com.bestdeals.returns.endpoint.builder.CalculateParamsBuilder;
 import com.bestdeals.returns.repository.FxRateRepository;
 import com.bestdeals.returns.service.CalculatorService;
 import cucumber.api.java.en.And;

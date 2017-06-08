@@ -1,10 +1,10 @@
-package com.bestdeals.returns.builder;
+package com.bestdeals.returns.service.calculator.factory;
 
 
-import com.bestdeals.returns.calculator.Calculator;
-import com.bestdeals.returns.calculator.CalculatorAnnualSimple;
-import com.bestdeals.returns.calculator.CalculatorSimpleCompound;
 import com.bestdeals.returns.endpoint.CalculateParams;
+import com.bestdeals.returns.service.calculator.Calculator;
+import com.bestdeals.returns.service.calculator.CalculatorAnnualSimple;
+import com.bestdeals.returns.service.calculator.CalculatorSimpleCompound;
 import org.springframework.stereotype.Component;
 
 @Component

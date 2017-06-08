@@ -1,4 +1,4 @@
-package com.bestdeals.returns.builder;
+package com.bestdeals.returns.endpoint.builder;
 
 import com.bestdeals.returns.domain.Deal;
 import com.bestdeals.returns.domain.Interval;

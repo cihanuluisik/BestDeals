@@ -1,9 +1,9 @@
 package com.bestdeals.returns.service;
 
-import com.bestdeals.returns.builder.CalculatorFactory;
-import com.bestdeals.returns.calculator.Calculator;
-import com.bestdeals.returns.calculator.Rounder;
 import com.bestdeals.returns.endpoint.CalculateParams;
+import com.bestdeals.returns.service.calculator.Calculator;
+import com.bestdeals.returns.service.calculator.Rounder;
+import com.bestdeals.returns.service.calculator.factory.CalculatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
