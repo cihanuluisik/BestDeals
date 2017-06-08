@@ -1,4 +1,4 @@
-package com.bestdeals.cucumber;
+package com.bestdeals.cucumber.end2end;
 
 import com.bestdeals.returns.endpoint.CalculateParams;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package com.bestdeals.cucumber;
+package com.bestdeals.cucumber.service;
 
 import com.bestdeals.ReturnCalculatorApplication;
 import com.bestdeals.returns.domain.Deal;
@@ -14,7 +14,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -26,11 +25,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration( classes = ReturnCalculatorApplication.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-
-/*@RunWith(SpringRunner.class)
-@DataJpaTest
-@ContextConfiguration(classes = ReturnCalculatorApplication.class)*/
 public class CalculatorServiceSteps {
 
     @Autowired
