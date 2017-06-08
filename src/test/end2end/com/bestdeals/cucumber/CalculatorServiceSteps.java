@@ -27,6 +27,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration( classes = ReturnCalculatorApplication.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+
+/*@RunWith(SpringRunner.class)
+@DataJpaTest
+@ContextConfiguration(classes = ReturnCalculatorApplication.class)*/
 public class CalculatorServiceSteps {
 
     @Autowired
