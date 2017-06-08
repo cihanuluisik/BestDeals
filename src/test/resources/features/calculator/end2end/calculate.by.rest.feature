@@ -1,4 +1,4 @@
-Feature: As a calculator service client I want to be able to calculate returns
+Feature: As a calculator RESTFul webservice client I want to be able to calculate returns for deal(s)
 
   Scenario Outline: Call calculator RESTFul webservice
     When I call calculator webservice with <currency> <amount> amount

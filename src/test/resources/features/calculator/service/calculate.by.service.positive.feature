@@ -1,4 +1,4 @@
-Feature: As a calculator service client I want to be able to calculate returns
+Feature: As a calculator service client I want to be able to calculate returns for a deal
 
   Scenario Outline: Given USD amount and a deal and parameters calculate interest return
     When I call calculator service with <currency> <amount> as amount

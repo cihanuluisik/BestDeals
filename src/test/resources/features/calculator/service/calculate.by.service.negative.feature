@@ -1,4 +1,4 @@
-Feature: As a calculator service client I want to be able to calculate returns
+Feature: As a calculator service client I want to be able to calculate returns for a deal even if no fx rate exists
 
   Scenario Outline: Given non USD amount and a deal and parameters calculate interest return to given currency if no fx rate exists
     Given No rates exist

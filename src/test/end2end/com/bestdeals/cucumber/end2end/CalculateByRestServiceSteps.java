@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration( classes = ReturnCalculatorApplication.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CalculatorRestServiceSteps {
+public class CalculateByRestServiceSteps {
 
 
     @Autowired

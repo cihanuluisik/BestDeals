@@ -10,6 +10,6 @@ import org.junit.runner.RunWith;
         glue = "com/bestdeals/cucumber/service"
 
 )
-public class CalculatorServiceCucumberTest {
+public class CalculateByServiceCucumberTest {
 
 }

@@ -25,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration( classes = ReturnCalculatorApplication.class)
-public class CalculatorServiceSteps {
+public class CalculateByServiceSteps {
 
     @Autowired
     private FxRateRepository fxRateRepository;
