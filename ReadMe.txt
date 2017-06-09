@@ -21,6 +21,4 @@ HOW TO RUN TESTS :
  Run 'mvn clean test' in the project root.
 
 
-NOTE ON TEST COVERAGE
-
 
