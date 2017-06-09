@@ -24,7 +24,7 @@ public class ClientRepositoryTest {
 
 
     @Test
-    public void givenTheSameRateToBeSavedShouldGiveConstraintError() throws Exception {
+    public void givenTheSameNameSurnameTwiceForDifferentClientsShouldGiveConstraintError() throws Exception {
 
         Client client = new Client(1, "alex", "carter");
 

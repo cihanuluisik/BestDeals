@@ -54,6 +54,4 @@ public class FxRateRepositoryTest {
                                                         .hasMessageContaining("ConstraintViolationException");
     }
 
-
-
 }

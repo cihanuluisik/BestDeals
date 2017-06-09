@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CalculatorService {
@@ -29,6 +30,8 @@ public class CalculatorService {
     }
 
     public BigDecimal calculateReturnForDeal(Deal deal){
+
+        Objects.nonNull(deal);
 
         Calculator calculator           = calculatorFactory.newCalculator(deal);
 

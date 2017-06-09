@@ -18,8 +18,10 @@ public class Deal {
     private Integer      clientId;
 
     private DealType     dealType;
+
     private String       currency;
     private BigDecimal   amount;
+
     private IntervalType intervalType;
     private Double       rate;
     private Integer      period;
