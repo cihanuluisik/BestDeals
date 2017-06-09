@@ -1,9 +1,9 @@
 package com.bestdeals.cucumber.service;
 
 import com.bestdeals.ReturnCalculatorApplication;
-import com.bestdeals.returns.domain.Deal;
 import com.bestdeals.returns.domain.FxRate;
-import com.bestdeals.returns.domain.Interval;
+import com.bestdeals.returns.domain.enums.DealType;
+import com.bestdeals.returns.domain.enums.IntervalType;
 import com.bestdeals.returns.endpoint.CalculateParams;
 import com.bestdeals.returns.endpoint.builder.CalculateParamsBuilder;
 import com.bestdeals.returns.repository.FxRateRepository;
@@ -60,15 +60,15 @@ public class CalculateByServiceSteps {
     }
 
     @And("^with ([^\"]*) compound interval$")
-    public void withIntervalCompoundInterval(Interval interval) throws Throwable {
-        calculateParamsBuilder.withInterval(interval);
+    public void withIntervalCompoundInterval(IntervalType intervalType) throws Throwable {
+        calculateParamsBuilder.withInterval(intervalType);
     }
 
     @Then("^the service should calculate to ([^\"]*) ([^\"]*) return for ([^\"]*) interest deal$")
-    public void theServiceShouldCalculateToCurrencyReturnReturnForDealInterestDeal(BigDecimal usdReturn, String currency, Deal deal) throws Throwable {
-        calculateParamsBuilder.withDeal(deal);
+    public void theServiceShouldCalculateToCurrencyReturnReturnForDealInterestDeal(BigDecimal usdReturn, String currency, DealType dealType) throws Throwable {
+        calculateParamsBuilder.withDeal(dealType);
         CalculateParams calculateParams = calculateParamsBuilder.build();
-        BigDecimal calculatedReturn = calculatorService.calculateAndConvert(calculateParams);
+        BigDecimal calculatedReturn = calculatorService.calculateAndConvertToUsd(calculateParams);
         assertThat(calculatedReturn.doubleValue()).isEqualTo(usdReturn.doubleValue());
     }
 

@@ -1,14 +1,60 @@
 package com.bestdeals.returns.domain;
 
-public enum Deal {
+import com.bestdeals.returns.domain.enums.DealType;
+import com.bestdeals.returns.domain.enums.IntervalType;
 
-    Simple("Simple Compound"), Annual("Annual Simple");
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.math.BigDecimal;
 
-    private final String name;
+@Entity
+public class Deal {
 
-    Deal(String name) {
-        this.name = name;
+    @Id
+    @GeneratedValue
+    private Integer id;
+
+
+    public Integer getClientId() {
+        return clientId;
     }
+
+    public DealType getDealType() {
+        return dealType;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public IntervalType getIntervalType() {
+        return intervalType;
+    }
+
+    public Double getRate() {
+        return rate;
+    }
+
+    public Integer getPeriod() {
+        return period;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
+    }
+
+    private Integer      clientId;
+    private DealType     dealType;
+    private String       currency;
+    private BigDecimal   amount;
+    private IntervalType intervalType;
+    private Double       rate;
+    private Integer      period;
 
 
 }

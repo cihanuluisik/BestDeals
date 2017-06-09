@@ -11,12 +11,12 @@ import javax.ws.rs.core.MediaType;
 import java.math.BigDecimal;
 
 @Path("/calculate")
-public class ReturnCalculatorEndPoint {
+public class EndPointCalculateDeal {
 
     private final CalculatorService calculatorService;
 
     @Autowired
-    public ReturnCalculatorEndPoint(CalculatorService calculatorService) {
+    public EndPointCalculateDeal(CalculatorService calculatorService) {
         this.calculatorService = calculatorService;
     }
 
@@ -24,11 +24,9 @@ public class ReturnCalculatorEndPoint {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public BigDecimal calculateReturn(CalculateParams calculateParams) {
-
-        BigDecimal interestReturn = calculatorService.calculateAndConvert(calculateParams);
-        return interestReturn;
+        BigDecimal interestReturnInUsd = calculatorService.calculateAndConvertToUsd(calculateParams);
+        return interestReturnInUsd;
     }
-
 
 
 }

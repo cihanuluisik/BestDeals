@@ -1,6 +1,7 @@
 package com.bestdeals.returns.config;
 
-import com.bestdeals.returns.endpoint.ReturnCalculatorEndPoint;
+import com.bestdeals.returns.endpoint.EndPointCalculateClientDeals;
+import com.bestdeals.returns.endpoint.EndPointCalculateDeal;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +9,8 @@ import org.springframework.stereotype.Component;
 public class JerseyConfig extends ResourceConfig {
 
     public JerseyConfig() {
-        register(ReturnCalculatorEndPoint.class);
+        register(EndPointCalculateDeal.class);
+        register(EndPointCalculateClientDeals.class);
     }
 
 }

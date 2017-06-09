@@ -10,6 +10,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import java.math.BigDecimal;
 
 @Lazy
 @Component
@@ -21,7 +22,7 @@ public class TestWebClient {
     private final Client client = ClientBuilder.newClient();
     private WebTarget target;
 
-    public <T> T callCalculate(CalculateParams entity, Class<T> returnType, String servicePath) {
+    public <T> T callCalculate(String servicePath, CalculateParams entity, Class<T> returnType) {
         target = client.target("http://localhost:"+ port+ servicePath);
         return target.request(MediaType.APPLICATION_JSON_TYPE)
                                         .post(Entity.entity(entity,  MediaType.APPLICATION_JSON_TYPE))
@@ -29,4 +30,8 @@ public class TestWebClient {
     }
 
 
+    public BigDecimal callCalculateAll(String servicePath, String clientId) {
+        target = client.target("http://localhost:"+ port+ servicePath+ "/id/"+clientId);
+        return target.request(MediaType.APPLICATION_JSON_TYPE).get().readEntity(BigDecimal.class);
+    }
 }

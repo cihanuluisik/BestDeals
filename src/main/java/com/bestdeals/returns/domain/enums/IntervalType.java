@@ -1,11 +1,11 @@
-package com.bestdeals.returns.domain;
+package com.bestdeals.returns.domain.enums;
 
-public enum Interval {
+public enum IntervalType {
     daily(365), monthly(12), quarterly(4),biannually(2), yearly(1),  none(-1);
 
     private final int value;
 
-    Interval(int value) {
+    IntervalType(int value) {
         this.value = value;
     }
 

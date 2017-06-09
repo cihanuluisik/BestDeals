@@ -1,7 +1,7 @@
 package com.bestdeals.returns.endpoint.builder;
 
-import com.bestdeals.returns.domain.Deal;
-import com.bestdeals.returns.domain.Interval;
+import com.bestdeals.returns.domain.enums.DealType;
+import com.bestdeals.returns.domain.enums.IntervalType;
 import com.bestdeals.returns.endpoint.CalculateParams;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +14,8 @@ public class CalculateParamsBuilder {
     private BigDecimal amount;
     private Double rate;
     private Integer period;
-    private Interval interval;
-    private Deal deal;
+    private IntervalType intervalType;
+    private DealType dealType;
 
     public CalculateParamsBuilder() {
     }
@@ -42,19 +42,19 @@ public class CalculateParamsBuilder {
         return this;
     }
 
-    public CalculateParamsBuilder withInterval(Interval interval) {
+    public CalculateParamsBuilder withInterval(IntervalType intervalType) {
 
-        this.interval = interval;
+        this.intervalType = intervalType;
         return this;
     }
 
     public CalculateParams build() {
-        return new CalculateParams(deal, currency, amount, interval, rate, period);
+        return new CalculateParams(dealType, currency, amount, intervalType, rate, period);
     }
 
-    public CalculateParamsBuilder withDeal(Deal deal) {
+    public CalculateParamsBuilder withDeal(DealType dealType) {
 
-        this.deal = deal;
+        this.dealType = dealType;
         return this;
     }
 }

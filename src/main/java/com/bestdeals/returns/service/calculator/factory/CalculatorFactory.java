@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 public class CalculatorFactory {
 
     public Calculator newCalculator(CalculateParams calculateParams){
-        switch (calculateParams.getDeal()){
-            case  Simple: return new CalculatorSimpleCompound(calculateParams.getAmount(), calculateParams.getRate(), calculateParams.getPeriod(), calculateParams.getInterval());
+        switch (calculateParams.getDealType()){
+            case  Simple: return new CalculatorSimpleCompound(calculateParams.getAmount(), calculateParams.getRate(), calculateParams.getPeriod(), calculateParams.getIntervalType());
             default     : return new CalculatorAnnualSimple(calculateParams.getAmount(), calculateParams.getRate(), calculateParams.getPeriod());
         }
     }

@@ -1,8 +1,9 @@
-package com.bestdeals.cucumber.end2end;
+package com.bestdeals.cucumber.end2end.deal;
 
 import com.bestdeals.ReturnCalculatorApplication;
-import com.bestdeals.returns.domain.Deal;
-import com.bestdeals.returns.domain.Interval;
+import com.bestdeals.cucumber.end2end.TestWebClient;
+import com.bestdeals.returns.domain.enums.DealType;
+import com.bestdeals.returns.domain.enums.IntervalType;
 import com.bestdeals.returns.endpoint.CalculateParams;
 import com.bestdeals.returns.endpoint.builder.CalculateParamsBuilder;
 import cucumber.api.java.en.And;
@@ -47,17 +48,18 @@ public class CalculateByRestServiceSteps {
     }
 
     @And("^by ([^\"]*) compound interval$")
-    public void withIntervalCompoundInterval(Interval interval) throws Throwable {
-        calculateParamsBuilder.withInterval(interval);
+    public void withIntervalCompoundInterval(IntervalType intervalType) throws Throwable {
+        calculateParamsBuilder.withInterval(intervalType);
     }
 
     @Then("^the webservice should calculate to ([^\"]*) USD return for ([^\"]*) interest deal$")
-    public void theWebserviceShouldCalculateToUsdReturnUSDReturnForDealInterestDeal(BigDecimal usdReturn, Deal deal) throws Throwable {
-        calculateParamsBuilder.withDeal(deal);
+    public void theWebserviceShouldCalculateToUsdReturnUSDReturnForDealInterestDeal(BigDecimal usdReturn, DealType dealType) throws Throwable {
+        calculateParamsBuilder.withDeal(dealType);
         CalculateParams calculateParams = calculateParamsBuilder.build();
 
-        BigDecimal calculatedReturn = testWebClient.callCalculate(calculateParams, BigDecimal.class,"/calculate");
+        BigDecimal calculatedReturn = testWebClient.callCalculate("/calculate", calculateParams, BigDecimal.class);
         assertThat(calculatedReturn.doubleValue()).isEqualTo(usdReturn.doubleValue());
     }
+
 
 }
