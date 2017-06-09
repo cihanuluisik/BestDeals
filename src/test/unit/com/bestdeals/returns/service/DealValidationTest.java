@@ -15,12 +15,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 @RunWith(Parameterized.class)
-public class ValidatorTest {
+public class DealValidationTest {
 
     Validator validator = new Validator();
 
 
-    public ValidatorTest(DealType dealType, String currency, BigDecimal amount, IntervalType intervalType, Double rate, Integer period, String message) {
+    public DealValidationTest(DealType dealType, String currency, BigDecimal amount, IntervalType intervalType, Double rate, Integer period, String message) {
         this.dealType = dealType;
         this.currency = currency;
         this.amount = amount;

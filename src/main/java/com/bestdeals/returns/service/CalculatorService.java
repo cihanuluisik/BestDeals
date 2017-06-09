@@ -47,6 +47,8 @@ public class CalculatorService {
 
     public BigDecimal calculateAllReturnsForClientDeals(Integer clientId) {
 
+        validator.validateClientId(clientId);
+
         List<Deal> deals = dealRepository.findByClientId(clientId);
 
         BigDecimal totalInUsd = deals.stream()

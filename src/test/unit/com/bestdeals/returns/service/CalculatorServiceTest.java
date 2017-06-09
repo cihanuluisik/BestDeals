@@ -16,6 +16,11 @@ public class CalculatorServiceTest {
                                     .hasMessage("Deal can not be empty");
     }
 
-
+    @Test
+    public void givenAnInvalidClientThenCalculateAllReturnsForClientDealsThrowsRuntime() throws Exception {
+        assertThat(catchThrowable(() -> calculatorService.calculateAllReturnsForClientDeals(-1)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Invalid client id");
+    }
 
 }

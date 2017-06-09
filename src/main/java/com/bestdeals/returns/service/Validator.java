@@ -6,23 +6,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class Validator {
 
-    void validateDeal(Deal deal) {
-
-        throwErrorIfTrue(deal ==null,                   "Deal can not be empty");
-        throwErrorIfTrue(deal.getDealType() ==null,      "Deal type can not be empty");
-        throwErrorIfTrue(deal.getCurrency()==null,      "Currency can not be empty");
-        throwErrorIfTrue(deal.getAmount()==null,        "Amount can not be empty");
-        throwErrorIfTrue(deal.getIntervalType() ==null, "Interval type can not be empty");
-        throwErrorIfTrue(deal.getRate() <= 0,           "Rate must be non negative");
-        throwErrorIfTrue(deal.getRate() * 100 - Math.round( deal.getRate() * 100 ) >  0, "Rate must have two decimals");
-        throwErrorIfTrue(deal.getPeriod() < 1,          "Period must be greater than zero");
+    public void validateDeal(Deal deal) {
+        throwIllegalIfTrue(deal ==null,                   "Deal can not be empty");
+        throwIllegalIfTrue(deal.getDealType() ==null,      "Deal type can not be empty");
+        throwIllegalIfTrue(deal.getCurrency()==null,      "Currency can not be empty");
+        throwIllegalIfTrue(deal.getAmount()==null,        "Amount can not be empty");
+        throwIllegalIfTrue(deal.getIntervalType() ==null, "Interval type can not be empty");
+        throwIllegalIfTrue(deal.getRate() <= 0,           "Rate must be non negative");
+        throwIllegalIfTrue(deal.getRate() * 100 - Math.round( deal.getRate() * 100 ) >  0, "Rate must have two decimals");
+        throwIllegalIfTrue(deal.getPeriod() < 1,          "Period must be greater than zero");
     }
 
-    private void throwErrorIfTrue(boolean check, String errorMessage) {
+    public void validateClientId(Integer clientId) {
+        throwIllegalIfTrue(clientId <= 0,           "Invalid client id");
+    }
+
+
+    private void throwIllegalIfTrue(boolean check, String errorMessage) {
         if (check)  {
             throw new IllegalArgumentException(errorMessage);
         }
     }
-
-
 }
