@@ -1,6 +1,6 @@
 package com.bestdeals.returns.calculator;
 
-import com.bestdeals.returns.service.calculator.Rounder;
+import com.bestdeals.returns.service.Rounder;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

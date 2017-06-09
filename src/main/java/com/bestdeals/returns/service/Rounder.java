@@ -1,4 +1,4 @@
-package com.bestdeals.returns.service.calculator;
+package com.bestdeals.returns.service;
 
 import org.springframework.stereotype.Component;
 

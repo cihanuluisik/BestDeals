@@ -3,7 +3,6 @@ package com.bestdeals.returns.service;
 import com.bestdeals.returns.domain.Deal;
 import com.bestdeals.returns.repository.DealRepository;
 import com.bestdeals.returns.service.calculator.BaseCalculator;
-import com.bestdeals.returns.service.calculator.Rounder;
 import com.bestdeals.returns.service.calculator.factory.CalculatorFactory;
 import com.bestdeals.returns.service.validator.ClientValidator;
 import com.bestdeals.returns.service.validator.DealValidator;
