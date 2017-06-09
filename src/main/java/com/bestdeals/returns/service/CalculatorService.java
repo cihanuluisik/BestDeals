@@ -5,6 +5,8 @@ import com.bestdeals.returns.repository.DealRepository;
 import com.bestdeals.returns.service.calculator.Calculator;
 import com.bestdeals.returns.service.calculator.Rounder;
 import com.bestdeals.returns.service.calculator.factory.CalculatorFactory;
+import com.bestdeals.returns.service.validator.ClientValidator;
+import com.bestdeals.returns.service.validator.DealValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,21 +20,23 @@ public class CalculatorService {
     private final FxConverterService fxConverterService;
     private final DealRepository dealRepository;
     private final Rounder rounder;
-    private final Validator validator;
+    private final DealValidator dealValidator;
+    private final ClientValidator clientValidator;
 
     @Autowired
     public CalculatorService(CalculatorFactory calculatorFactory, FxConverterService fxConverterService
-                            , DealRepository dealRepository, Rounder rounder, Validator validator) {
+                            , DealRepository dealRepository, Rounder rounder, DealValidator dealValidator, ClientValidator clientValidator) {
         this.calculatorFactory = calculatorFactory;
         this.fxConverterService = fxConverterService;
         this.dealRepository = dealRepository;
         this.rounder = rounder;
-        this.validator = validator;
+        this.dealValidator = dealValidator;
+        this.clientValidator = clientValidator;
     }
 
     public BigDecimal calculateReturnForDeal(Deal deal){
 
-        validator.validateDeal(deal);
+        dealValidator.validateDeal(deal);
 
         Calculator calculator           = calculatorFactory.newCalculator(deal);
 
@@ -47,7 +51,7 @@ public class CalculatorService {
 
     public BigDecimal calculateAllReturnsForClientDeals(Integer clientId) {
 
-        validator.validateClientId(clientId);
+        clientValidator.validateClientId(clientId);
 
         List<Deal> deals = dealRepository.findByClientId(clientId);
 

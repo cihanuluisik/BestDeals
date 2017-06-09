@@ -1,4 +1,4 @@
-package com.bestdeals.returns.service;
+package com.bestdeals.returns.service.validator;
 
 import com.bestdeals.returns.domain.Deal;
 import com.bestdeals.returns.domain.enums.DealType;
@@ -15,12 +15,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 @RunWith(Parameterized.class)
-public class DealValidationTest {
+public class DealDealValidatorTest {
 
-    Validator validator = new Validator();
+    DealValidator dealValidator = new DealValidator();
 
 
-    public DealValidationTest(DealType dealType, String currency, BigDecimal amount, IntervalType intervalType, Double rate, Integer period, String message) {
+    public DealDealValidatorTest(DealType dealType, String currency, BigDecimal amount, IntervalType intervalType, Double rate, Integer period, String message) {
         this.dealType = dealType;
         this.currency = currency;
         this.amount = amount;
@@ -55,7 +55,7 @@ public class DealValidationTest {
     @Test
     public void givenADoubleWhenRoundedThenReturnsExpected() {
         Deal deal = new Deal(dealType, currency, amount, intervalType, rate, period);
-        assertThat(catchThrowable(() -> validator.validateDeal(deal)))
+        assertThat(catchThrowable(() -> dealValidator.validateDeal(deal)))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(message);
     }

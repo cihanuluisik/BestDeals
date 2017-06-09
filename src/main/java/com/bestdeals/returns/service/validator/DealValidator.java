@@ -1,10 +1,10 @@
-package com.bestdeals.returns.service;
+package com.bestdeals.returns.service.validator;
 
 import com.bestdeals.returns.domain.Deal;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Validator {
+public class DealValidator extends BaseValidator {
 
     public void validateDeal(Deal deal) {
         throwIllegalIfTrue(deal ==null,                   "Deal can not be empty");
@@ -21,10 +21,4 @@ public class Validator {
         throwIllegalIfTrue(clientId <= 0,           "Invalid client id");
     }
 
-
-    private void throwIllegalIfTrue(boolean check, String errorMessage) {
-        if (check)  {
-            throw new IllegalArgumentException(errorMessage);
-        }
-    }
 }

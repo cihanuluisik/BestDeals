@@ -1,9 +1,8 @@
-package com.bestdeals.repository;
+package com.bestdeals.returns.repository;
 
 
 import com.bestdeals.ReturnCalculatorApplication;
 import com.bestdeals.returns.domain.Client;
-import com.bestdeals.returns.repository.ClientRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;

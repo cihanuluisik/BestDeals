@@ -71,9 +71,4 @@ public class CalculateByServiceSteps {
         BigDecimal calculatedReturn = calculatorService.calculateReturnForDeal(deal);
         assertThat(calculatedReturn.doubleValue()).isEqualTo(usdReturn.doubleValue());
     }
-
-    @Given("^No rates exist$")
-    public void noRatesExist() throws Throwable {
-        fxRateRepository.deleteAll();
-    }
 }

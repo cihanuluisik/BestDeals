@@ -1,7 +1,7 @@
 package com.bestdeals.returns.service;
 
-import com.bestdeals.returns.domain.FxRate;
 import com.bestdeals.returns.repository.FxRateRepository;
+import com.bestdeals.returns.service.validator.CurrencyValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,23 +11,33 @@ import java.time.LocalDate;
 @Service
 public class FxConverterService {
 
-    public static final FxRate UNIT_FX_RATE = new FxRate("USD", BigDecimal.ONE, LocalDate.now());
+    public static final String UNIT_CURRENCY ="USD";
+
     private final FxRateRepository  fxRateRepository;
+    private final CurrencyValidator currencyValidator;
 
     @Autowired
-    public FxConverterService(FxRateRepository fxRateRepository) {
+    public FxConverterService(FxRateRepository fxRateRepository, CurrencyValidator currencyValidator) {
         this.fxRateRepository = fxRateRepository;
+        this.currencyValidator = currencyValidator;
     }
 
     public BigDecimal convertToUsd(String currency, BigDecimal amount){
-        BigDecimal fxRate = getRate(currency);
+        currencyValidator.validateCurrency(currency, amount);
+        BigDecimal fxRate =  getRate(currency);
         return amount.multiply(fxRate);
     }
 
     private BigDecimal getRate(String currency) {
-        return fxRateRepository.findByCurrencyAndDate(currency, LocalDate.now())
-                .orElse(UNIT_FX_RATE)
-                .getRate();
+
+        switch (currency) {
+            case UNIT_CURRENCY:
+                return BigDecimal.ONE;
+            default:
+                return fxRateRepository.findByCurrencyAndDate(currency, LocalDate.now())
+                        .orElseThrow(() -> new RuntimeException("Currency is not found"))
+                        .getRate();
+        }
     }
 
 }

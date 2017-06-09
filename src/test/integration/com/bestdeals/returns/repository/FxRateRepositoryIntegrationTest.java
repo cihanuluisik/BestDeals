@@ -1,9 +1,8 @@
-package com.bestdeals.repository;
+package com.bestdeals.returns.repository;
 
 
 import com.bestdeals.ReturnCalculatorApplication;
 import com.bestdeals.returns.domain.FxRate;
-import com.bestdeals.returns.repository.FxRateRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
