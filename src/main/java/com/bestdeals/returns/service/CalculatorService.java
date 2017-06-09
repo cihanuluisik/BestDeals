@@ -42,12 +42,14 @@ public class CalculatorService {
     }
 
     public BigDecimal calculateAllReturnsForClientDeals(Integer clientId) {
+
         List<Deal> deals = dealRepository.findByClientId(clientId);
-        BigDecimal totalInUsd = BigDecimal.ZERO;
-        for (Deal deal : deals) {
-            totalInUsd = totalInUsd.add(calculateReturnForDeal(deal));
-        }
+
+        BigDecimal totalInUsd = deals.stream()
+                                    .map(this::calculateReturnForDeal)
+                                    .reduce(BigDecimal.ZERO, BigDecimal::add);
         return totalInUsd;
     }
+
 }
 
