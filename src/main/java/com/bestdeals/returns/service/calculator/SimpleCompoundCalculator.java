@@ -5,11 +5,11 @@ import com.bestdeals.returns.domain.enums.IntervalType;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class CalculatorSimpleCompound extends Calculator {
+public class SimpleCompoundCalculator extends BaseCalculator {
 
     private final int intervalValue;
 
-    public CalculatorSimpleCompound(BigDecimal amount, Double rate, Integer period, IntervalType intervalType) {
+    public SimpleCompoundCalculator(BigDecimal amount, Double rate, Integer period, IntervalType intervalType) {
         super(amount, period, rate);
         this.intervalValue   = intervalType.getValue();
     }

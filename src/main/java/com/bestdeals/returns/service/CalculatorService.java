@@ -2,7 +2,7 @@ package com.bestdeals.returns.service;
 
 import com.bestdeals.returns.domain.Deal;
 import com.bestdeals.returns.repository.DealRepository;
-import com.bestdeals.returns.service.calculator.Calculator;
+import com.bestdeals.returns.service.calculator.BaseCalculator;
 import com.bestdeals.returns.service.calculator.Rounder;
 import com.bestdeals.returns.service.calculator.factory.CalculatorFactory;
 import com.bestdeals.returns.service.validator.ClientValidator;
@@ -38,7 +38,7 @@ public class CalculatorService {
 
         dealValidator.validateDeal(deal);
 
-        Calculator calculator           = calculatorFactory.newCalculator(deal);
+        BaseCalculator calculator           = calculatorFactory.newCalculator(deal);
 
         BigDecimal calculatedReturn     = calculator.calculate();
 

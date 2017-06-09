@@ -2,19 +2,19 @@ package com.bestdeals.returns.service.calculator;
 
 import java.math.BigDecimal;
 
-public abstract class Calculator {
+public abstract class BaseCalculator {
 
     protected  BigDecimal percentRate;
     protected  BigDecimal amount;
     protected  Integer period;
 
-    public Calculator(BigDecimal amount, Integer period, Double rate) {
+    public BaseCalculator(BigDecimal amount, Integer period, Double rate) {
         this.amount         = amount;
         this.period = period;
         this.percentRate    = convertToPercentRate(rate);
     }
 
-    public Calculator() {
+    public BaseCalculator() {
     }
 
     public abstract BigDecimal calculate();

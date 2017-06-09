@@ -1,29 +1,32 @@
 package com.bestdeals.returns.endpoint;
 
+import com.bestdeals.returns.domain.Deal;
 import com.bestdeals.returns.service.CalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.math.BigDecimal;
-@Path("/calculate/all/client/{id}")
-public class EndPointCalculateClientDeals {
+
+@Path("/calculate")
+public class CalculateDealEndPoint {
 
     private final CalculatorService calculatorService;
 
     @Autowired
-    public EndPointCalculateClientDeals(CalculatorService calculatorService) {
+    public CalculateDealEndPoint(CalculatorService calculatorService) {
         this.calculatorService = calculatorService;
     }
 
-    @GET
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public BigDecimal calculateClientDeals(@PathParam("id") Integer clientId) {
-        BigDecimal interestReturn = calculatorService.calculateAllReturnsForClientDeals(clientId);
-        return interestReturn;
+    public BigDecimal calculateReturn(Deal deal) {
+        BigDecimal interestReturnInUsd = calculatorService.calculateReturnForDeal(deal);
+        return interestReturnInUsd;
     }
 
 

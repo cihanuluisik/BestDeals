@@ -2,9 +2,9 @@ package com.bestdeals.returns.service.calculator;
 
 import java.math.BigDecimal;
 
-public class CalculatorAnnualSimple extends Calculator {
+public class AnnualSimpleCalculator extends BaseCalculator {
 
-    public CalculatorAnnualSimple(BigDecimal amount, Double rate, Integer period) {
+    public AnnualSimpleCalculator(BigDecimal amount, Double rate, Integer period) {
         super(amount, period, rate);
     }
 
