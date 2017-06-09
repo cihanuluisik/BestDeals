@@ -15,7 +15,7 @@ public class CalculatorServiceTest {
     public void givenNullDealThenCalculateReturnShouldReturnZero() throws Exception {
         assertThat(catchThrowable(() -> calculatorService.calculateReturnForDeal(null) ))
                                     .isInstanceOf(IllegalArgumentException.class)
-                                    .hasMessage("Deal can not be empty");
+                                    .hasMessage(DealValidator.ERR_MSG_DEAL_CAN_NOT_BE_EMPTY);
     }
 
 

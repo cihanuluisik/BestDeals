@@ -14,7 +14,7 @@ public class ClientValidatorTest {
     public void givenAnInvalidClientThenCalculateAllReturnsForClientDealsThrowsRuntime() throws Exception {
         assertThat(catchThrowable(() -> clientValidator.validateClientId(-1)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Invalid client id");
+                .hasMessage(ClientValidator.ERR_MSG_INVALID_CLIENT_ID);
     }
 
 

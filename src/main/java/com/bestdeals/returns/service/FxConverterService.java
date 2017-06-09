@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import static com.bestdeals.returns.service.validator.CurrencyValidator.ERR_MSG_CURRENCY_IS_NOT_FOUND;
+
 @Service
 public class FxConverterService {
 
@@ -35,7 +37,7 @@ public class FxConverterService {
                 return BigDecimal.ONE;
             default:
                 return fxRateRepository.findByCurrencyAndDate(currency, LocalDate.now())
-                        .orElseThrow(() -> new RuntimeException("Currency is not found"))
+                        .orElseThrow(() -> new RuntimeException(ERR_MSG_CURRENCY_IS_NOT_FOUND))
                         .getRate();
         }
     }

@@ -11,16 +11,18 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static com.bestdeals.returns.service.validator.BaseValidator.ERR_MSG_AMOUNT_CAN_NOT_BE_EMPTY;
+import static com.bestdeals.returns.service.validator.BaseValidator.ERR_MSG_CURRENCY_CAN_NOT_BE_EMPTY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 @RunWith(Parameterized.class)
-public class DealDealValidatorTest {
+public class DealValidatorTest {
 
     DealValidator dealValidator = new DealValidator();
 
 
-    public DealDealValidatorTest(DealType dealType, String currency, BigDecimal amount, IntervalType intervalType, Double rate, Integer period, String message) {
+    public DealValidatorTest(DealType dealType, String currency, BigDecimal amount, IntervalType intervalType, Double rate, Integer period, String message) {
         this.dealType = dealType;
         this.currency = currency;
         this.amount = amount;
@@ -41,14 +43,14 @@ public class DealDealValidatorTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-                 { null,            "GBP"   , BigDecimal.TEN, IntervalType.none, 2.0, 1, "Deal type can not be empty"}
-                ,{ DealType.Annual, null    , BigDecimal.TEN, IntervalType.none, 2.0, 1, "Currency can not be empty"}
-                ,{ DealType.Annual, "GBP"    , null         , IntervalType.none, 2.0, 1, "Amount can not be empty"}
-                ,{ DealType.Annual, "GBP"    ,BigDecimal.TEN, null             , 2.0, 1, "Interval type can not be empty"}
-                ,{ DealType.Annual, "GBP"    ,BigDecimal.TEN, IntervalType.none, -2.0, 1,"Rate must be non negative"}
-                ,{ DealType.Annual, "GBP"    ,BigDecimal.TEN, IntervalType.none, 0.0, 1, "Rate must be non negative"}
-                ,{ DealType.Annual, "GBP"    ,BigDecimal.TEN, IntervalType.none, 0.123, 1,"Rate must have two decimals"}
-                ,{ DealType.Annual, "GBP"    ,BigDecimal.TEN, IntervalType.none, 1.9, 0, "Period must be greater than zero"}
+                 { null,            "GBP"   , BigDecimal.TEN, IntervalType.none, 2.0, 1, DealValidator.ERR_MSG_DEAL_TYPE_CAN_NOT_BE_EMPTY}
+                ,{ DealType.Annual, null    , BigDecimal.TEN, IntervalType.none, 2.0, 1, ERR_MSG_CURRENCY_CAN_NOT_BE_EMPTY}
+                ,{ DealType.Annual, "GBP"    , null         , IntervalType.none, 2.0, 1, ERR_MSG_AMOUNT_CAN_NOT_BE_EMPTY}
+                ,{ DealType.Annual, "GBP"    ,BigDecimal.TEN, null             , 2.0, 1, DealValidator.ERR_MSG_INTERVAL_TYPE_CAN_NOT_BE_EMPTY}
+                ,{ DealType.Annual, "GBP"    ,BigDecimal.TEN, IntervalType.none, -2.0, 1, DealValidator.ERR_MSG_RATE_MUST_BE_NON_NEGATIVE}
+                ,{ DealType.Annual, "GBP"    ,BigDecimal.TEN, IntervalType.none, 0.0, 1,  DealValidator.ERR_MSG_RATE_MUST_BE_NON_NEGATIVE}
+                ,{ DealType.Annual, "GBP"    ,BigDecimal.TEN, IntervalType.none, 0.123, 1, DealValidator.ERR_MSG_RATE_MUST_HAVE_TWO_DECIMALS}
+                ,{ DealType.Annual, "GBP"    ,BigDecimal.TEN, IntervalType.none, 1.9, 0, DealValidator.ERR_MSG_PERIOD_MUST_BE_GREATER_THAN_ZERO}
         });
     }
 
