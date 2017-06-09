@@ -1,9 +1,9 @@
 package com.bestdeals.cucumber.service;
 
 import com.bestdeals.ReturnCalculatorApplication;
+import com.bestdeals.cucumber.builder.DealBuilder;
 import com.bestdeals.returns.domain.Deal;
 import com.bestdeals.returns.domain.FxRate;
-import com.bestdeals.returns.domain.builder.DealBuilder;
 import com.bestdeals.returns.domain.enums.DealType;
 import com.bestdeals.returns.domain.enums.IntervalType;
 import com.bestdeals.returns.repository.FxRateRepository;

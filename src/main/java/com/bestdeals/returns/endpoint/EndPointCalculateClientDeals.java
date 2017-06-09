@@ -9,7 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.math.BigDecimal;
-@Path("/calculate/all/id/{id}")
+@Path("/calculate/all/client/{id}")
 public class EndPointCalculateClientDeals {
 
     private final CalculatorService calculatorService;

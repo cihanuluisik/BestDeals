@@ -39,4 +39,5 @@ public class RounderTest {
     public void givenADoubleWhenRoundedThenReturnsExpected() {
         assertThat(rounder.roundTo2Decimal(BigDecimal.valueOf(given))).isEqualTo(BigDecimal.valueOf(rounded));
     }
+
 }

@@ -31,7 +31,7 @@ public class TestWebClient {
 
     public BigDecimal callCalculateAll(String servicePath, String clientId) {
         target = client.target(createUrl(servicePath));
-        return target.path("id").path(clientId)
+        return target.path("client").path(clientId)
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .get().readEntity(BigDecimal.class);
     }

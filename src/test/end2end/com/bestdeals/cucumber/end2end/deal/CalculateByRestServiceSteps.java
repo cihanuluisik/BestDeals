@@ -1,9 +1,9 @@
 package com.bestdeals.cucumber.end2end.deal;
 
 import com.bestdeals.ReturnCalculatorApplication;
+import com.bestdeals.cucumber.builder.DealBuilder;
 import com.bestdeals.cucumber.end2end.TestWebClient;
 import com.bestdeals.returns.domain.Deal;
-import com.bestdeals.returns.domain.builder.DealBuilder;
 import com.bestdeals.returns.domain.enums.DealType;
 import com.bestdeals.returns.domain.enums.IntervalType;
 import cucumber.api.java.en.And;

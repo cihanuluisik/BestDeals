@@ -1,4 +1,4 @@
-package com.bestdeals.returns.domain.builder;
+package com.bestdeals.cucumber.builder;
 
 import com.bestdeals.returns.domain.Deal;
 import com.bestdeals.returns.domain.enums.DealType;
