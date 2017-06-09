@@ -7,9 +7,11 @@ Spring Boots/Data, Jersey, Tomcat, H2, JPA
 Maven
 Cucumber
 JUnit
+AssertJ, Mockito
 
-WHAT REST PATH IMPLEMENTED  :
-HOST_URL/calculate : POST method taking CalculateParams object in JSON format
+RESTFul  SERVICES EXPOSED :
+/calculate              : POST method taking deal object in JSON format
+/calculate/all/id/{id}  : GET method taking client id as path param
 
 HOW TO RUN THE APP
 
