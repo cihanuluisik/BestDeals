@@ -15,6 +15,26 @@ public class Deal {
     @GeneratedValue
     private Integer id;
 
+    private Integer      clientId;
+
+    private DealType     dealType;
+    private String       currency;
+    private BigDecimal   amount;
+    private IntervalType intervalType;
+    private Double       rate;
+    private Integer      period;
+
+    public Deal() {
+    }
+
+    public Deal(DealType dealType, String currency, BigDecimal amount, IntervalType intervalType, Double rate, Integer period) {
+        this.dealType = dealType;
+        this.currency = currency;
+        this.amount = amount;
+        this.intervalType = intervalType;
+        this.rate = rate;
+        this.period = period;
+    }
 
     public Integer getClientId() {
         return clientId;
@@ -47,14 +67,6 @@ public class Deal {
     public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
-
-    private Integer      clientId;
-    private DealType     dealType;
-    private String       currency;
-    private BigDecimal   amount;
-    private IntervalType intervalType;
-    private Double       rate;
-    private Integer      period;
 
 
 }

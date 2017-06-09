@@ -22,7 +22,7 @@ public class EndPointCalculateClientDeals {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public BigDecimal calculateClientDeals(@PathParam("id") Integer clientId) {
-        BigDecimal interestReturn = calculatorService.calculateAllReturnsForClient(clientId);
+        BigDecimal interestReturn = calculatorService.calculateAllReturnsForClientDeals(clientId);
         return interestReturn;
     }
 

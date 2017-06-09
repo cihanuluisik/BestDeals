@@ -1,5 +1,6 @@
 package com.bestdeals.returns.endpoint;
 
+import com.bestdeals.returns.domain.Deal;
 import com.bestdeals.returns.service.CalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,8 +24,8 @@ public class EndPointCalculateDeal {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public BigDecimal calculateReturn(CalculateParams calculateParams) {
-        BigDecimal interestReturnInUsd = calculatorService.calculateAndConvertToUsd(calculateParams);
+    public BigDecimal calculateReturn(Deal deal) {
+        BigDecimal interestReturnInUsd = calculatorService.calculateReturnForDeal(deal);
         return interestReturnInUsd;
     }
 

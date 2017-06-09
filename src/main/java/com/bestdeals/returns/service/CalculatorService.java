@@ -1,7 +1,6 @@
 package com.bestdeals.returns.service;
 
 import com.bestdeals.returns.domain.Deal;
-import com.bestdeals.returns.endpoint.CalculateParams;
 import com.bestdeals.returns.repository.DealRepository;
 import com.bestdeals.returns.service.calculator.Calculator;
 import com.bestdeals.returns.service.calculator.Rounder;
@@ -22,35 +21,33 @@ public class CalculatorService {
 
     @Autowired
     public CalculatorService(CalculatorFactory calculatorFactory, FxConverterService fxConverterService
-            , DealRepository dealRepository, Rounder rounder) {
+                            , DealRepository dealRepository, Rounder rounder) {
         this.calculatorFactory = calculatorFactory;
         this.fxConverterService = fxConverterService;
         this.dealRepository = dealRepository;
         this.rounder = rounder;
     }
 
-    public BigDecimal calculateAndConvertToUsd(CalculateParams calculateParams){
+    public BigDecimal calculateReturnForDeal(Deal deal){
 
-        Calculator calculator           = calculatorFactory.newCalculator(calculateParams);
+        Calculator calculator           = calculatorFactory.newCalculator(deal);
 
         BigDecimal calculatedReturn     = calculator.calculate();
 
-        BigDecimal returnInUsd          = fxConverterService.convertToUsd(calculateParams.getCurrency(), calculatedReturn);
+        BigDecimal returnInUsd          = fxConverterService.convertToUsd(deal.getCurrency(), calculatedReturn);
 
         BigDecimal returnInUsdRounded   = rounder.roundTo2Decimal(returnInUsd);
 
         return returnInUsdRounded;
     }
 
-
-    public BigDecimal calculateAllReturnsForClient(Integer cliientId) {
-        List<Deal> deals = dealRepository.findByClientId(cliientId);
-        BigDecimal total = BigDecimal.ZERO;
+    public BigDecimal calculateAllReturnsForClientDeals(Integer clientId) {
+        List<Deal> deals = dealRepository.findByClientId(clientId);
+        BigDecimal totalInUsd = BigDecimal.ZERO;
         for (Deal deal : deals) {
-            CalculateParams params = new CalculateParams(deal.getDealType(), deal.getCurrency(), deal.getAmount(), deal.getIntervalType(), deal.getRate(), deal.getPeriod());
-            total = total.add(calculateAndConvertToUsd(params));
+            totalInUsd = totalInUsd.add(calculateReturnForDeal(deal));
         }
-        return total;
+        return totalInUsd;
     }
 }
 

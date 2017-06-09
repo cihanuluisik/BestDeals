@@ -2,10 +2,10 @@ package com.bestdeals.cucumber.end2end.deal;
 
 import com.bestdeals.ReturnCalculatorApplication;
 import com.bestdeals.cucumber.end2end.TestWebClient;
+import com.bestdeals.returns.domain.Deal;
+import com.bestdeals.returns.domain.builder.DealBuilder;
 import com.bestdeals.returns.domain.enums.DealType;
 import com.bestdeals.returns.domain.enums.IntervalType;
-import com.bestdeals.returns.endpoint.CalculateParams;
-import com.bestdeals.returns.endpoint.builder.CalculateParamsBuilder;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -29,35 +29,35 @@ public class CalculateByRestServiceSteps {
     private TestWebClient testWebClient;
 
     @Autowired
-    private CalculateParamsBuilder calculateParamsBuilder;
+    private DealBuilder dealBuilder;
 
 
     @When("^I call calculator webservice with ([^\"]*) ([^\"]*) amount$")
     public void iCallCalculatorServiceWithCurrencyAmountAmount(String currency, BigDecimal amount) throws Throwable {
-        calculateParamsBuilder.withCurrency(currency).withAmount(amount);
+        dealBuilder.withCurrency(currency).withAmount(amount);
     }
 
     @And("^annual rate ([^\"]*)$")
     public void annualRateRate(Double rate) throws Throwable {
-        calculateParamsBuilder.withRate(rate);
+        dealBuilder.withRate(rate);
     }
 
     @And("^for ([^\"]*) years period$")
     public void forPeriodYearsPeriod(Integer period) throws Throwable {
-        calculateParamsBuilder.withPeriod(period);
+        dealBuilder.withPeriod(period);
     }
 
     @And("^by ([^\"]*) compound interval$")
     public void withIntervalCompoundInterval(IntervalType intervalType) throws Throwable {
-        calculateParamsBuilder.withInterval(intervalType);
+        dealBuilder.withInterval(intervalType);
     }
 
     @Then("^the webservice should calculate to ([^\"]*) USD return for ([^\"]*) interest deal$")
     public void theWebserviceShouldCalculateToUsdReturnUSDReturnForDealInterestDeal(BigDecimal usdReturn, DealType dealType) throws Throwable {
-        calculateParamsBuilder.withDeal(dealType);
-        CalculateParams calculateParams = calculateParamsBuilder.build();
+        dealBuilder.withDeal(dealType);
+        Deal deal = dealBuilder.build();
 
-        BigDecimal calculatedReturn = testWebClient.callCalculate("/calculate", calculateParams, BigDecimal.class);
+        BigDecimal calculatedReturn = testWebClient.callCalculate("/calculate", deal);
         assertThat(calculatedReturn.doubleValue()).isEqualTo(usdReturn.doubleValue());
     }
 

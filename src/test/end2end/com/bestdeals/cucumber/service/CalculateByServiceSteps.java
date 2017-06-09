@@ -1,11 +1,11 @@
 package com.bestdeals.cucumber.service;
 
 import com.bestdeals.ReturnCalculatorApplication;
+import com.bestdeals.returns.domain.Deal;
 import com.bestdeals.returns.domain.FxRate;
+import com.bestdeals.returns.domain.builder.DealBuilder;
 import com.bestdeals.returns.domain.enums.DealType;
 import com.bestdeals.returns.domain.enums.IntervalType;
-import com.bestdeals.returns.endpoint.CalculateParams;
-import com.bestdeals.returns.endpoint.builder.CalculateParamsBuilder;
 import com.bestdeals.returns.repository.FxRateRepository;
 import com.bestdeals.returns.service.CalculatorService;
 import cucumber.api.java.en.And;
@@ -34,7 +34,7 @@ public class CalculateByServiceSteps {
     private CalculatorService calculatorService;
 
     @Autowired
-    private CalculateParamsBuilder calculateParamsBuilder;
+    private DealBuilder dealBuilder;
 
 
     @And("^Following cross usd fx rates exist for the day :$")
@@ -46,29 +46,29 @@ public class CalculateByServiceSteps {
 
     @When("^I call calculator service with ([^\"]*) ([^\"]*) as amount$")
     public void iCallCalculatorServiceWithCurrencyAmountAmount(String currency, BigDecimal amount) throws Throwable {
-        calculateParamsBuilder.withCurrency(currency).withAmount(amount);
+        dealBuilder.withCurrency(currency).withAmount(amount);
     }
 
     @Given("^with annual rate ([^\"]*)$")
     public void annualRateRate(Double rate) throws Throwable {
-        calculateParamsBuilder.withRate(rate);
+        dealBuilder.withRate(rate);
     }
 
     @And("^with ([^\"]*) years period$")
     public void forPeriodYearsPeriod(Integer period) throws Throwable {
-        calculateParamsBuilder.withPeriod(period);
+        dealBuilder.withPeriod(period);
     }
 
     @And("^with ([^\"]*) compound interval$")
     public void withIntervalCompoundInterval(IntervalType intervalType) throws Throwable {
-        calculateParamsBuilder.withInterval(intervalType);
+        dealBuilder.withInterval(intervalType);
     }
 
     @Then("^the service should calculate to ([^\"]*) ([^\"]*) return for ([^\"]*) interest deal$")
     public void theServiceShouldCalculateToCurrencyReturnReturnForDealInterestDeal(BigDecimal usdReturn, String currency, DealType dealType) throws Throwable {
-        calculateParamsBuilder.withDeal(dealType);
-        CalculateParams calculateParams = calculateParamsBuilder.build();
-        BigDecimal calculatedReturn = calculatorService.calculateAndConvertToUsd(calculateParams);
+        dealBuilder.withDeal(dealType);
+        Deal deal = dealBuilder.build();
+        BigDecimal calculatedReturn = calculatorService.calculateReturnForDeal(deal);
         assertThat(calculatedReturn.doubleValue()).isEqualTo(usdReturn.doubleValue());
     }
 

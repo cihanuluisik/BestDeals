@@ -1,6 +1,6 @@
 package com.bestdeals.cucumber.end2end;
 
-import com.bestdeals.returns.endpoint.CalculateParams;
+import com.bestdeals.returns.domain.Deal;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -22,11 +22,11 @@ public class TestWebClient {
     private final Client client = ClientBuilder.newClient();
     private WebTarget target;
 
-    public <T> T callCalculate(String servicePath, CalculateParams entity, Class<T> returnType) {
+    public BigDecimal callCalculate(String servicePath, Deal entity) {
         target = client.target("http://localhost:"+ port+ servicePath);
         return target.request(MediaType.APPLICATION_JSON_TYPE)
                                         .post(Entity.entity(entity,  MediaType.APPLICATION_JSON_TYPE))
-                                        .readEntity(returnType);
+                                        .readEntity(BigDecimal.class);
     }
 
 
