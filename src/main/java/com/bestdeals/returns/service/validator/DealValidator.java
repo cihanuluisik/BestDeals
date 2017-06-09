@@ -17,8 +17,4 @@ public class DealValidator extends BaseValidator {
         throwIllegalIfTrue(deal.getPeriod() < 1,          "Period must be greater than zero");
     }
 
-    public void validateClientId(Integer clientId) {
-        throwIllegalIfTrue(clientId <= 0,           "Invalid client id");
-    }
-
 }

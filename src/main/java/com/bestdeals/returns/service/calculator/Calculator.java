@@ -15,7 +15,6 @@ public abstract class Calculator {
     }
 
     public Calculator() {
-
     }
 
     public abstract BigDecimal calculate();
