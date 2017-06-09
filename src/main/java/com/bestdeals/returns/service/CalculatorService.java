@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class CalculatorService {
@@ -19,19 +18,21 @@ public class CalculatorService {
     private final FxConverterService fxConverterService;
     private final DealRepository dealRepository;
     private final Rounder rounder;
+    private final Validator validator;
 
     @Autowired
     public CalculatorService(CalculatorFactory calculatorFactory, FxConverterService fxConverterService
-                            , DealRepository dealRepository, Rounder rounder) {
+                            , DealRepository dealRepository, Rounder rounder, Validator validator) {
         this.calculatorFactory = calculatorFactory;
         this.fxConverterService = fxConverterService;
         this.dealRepository = dealRepository;
         this.rounder = rounder;
+        this.validator = validator;
     }
 
     public BigDecimal calculateReturnForDeal(Deal deal){
 
-        Objects.nonNull(deal);
+        validator.validateDeal(deal);
 
         Calculator calculator           = calculatorFactory.newCalculator(deal);
 

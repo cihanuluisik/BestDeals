@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @ContextConfiguration(classes = ReturnCalculatorApplication.class)
-public class FxRateRepositoryTest {
+public class FxRateRepositoryIntegrationTest {
 
     @Autowired
     private FxRateRepository fxRateRepository;

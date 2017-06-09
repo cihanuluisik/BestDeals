@@ -7,11 +7,15 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 
 public class CalculatorServiceTest {
 
+    private final CalculatorService calculatorService = new CalculatorService(null, null, null, null, new Validator());
+
     @Test
     public void givenNullDealThenCalculateReturnShouldReturnZero() throws Exception {
-        assertThat(catchThrowable(() -> new CalculatorService(null, null, null, null).calculateReturnForDeal(null) ))
-                                    .isInstanceOf(NullPointerException.class);
+        assertThat(catchThrowable(() -> calculatorService.calculateReturnForDeal(null) ))
+                                    .isInstanceOf(IllegalArgumentException.class)
+                                    .hasMessage("Deal can not be empty");
     }
+
 
 
 }

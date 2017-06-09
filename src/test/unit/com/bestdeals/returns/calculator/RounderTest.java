@@ -33,6 +33,7 @@ public class RounderTest {
     public void setUp() throws Exception {
         rounder = new Rounder();
     }
+
     private double given, rounded;
 
     @Test
