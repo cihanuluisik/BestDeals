@@ -23,15 +23,21 @@ public class TestWebClient {
     private WebTarget target;
 
     public BigDecimal callCalculate(String servicePath, Deal entity) {
-        target = client.target("http://localhost:"+ port+ servicePath);
+        target = client.target(createUrl(servicePath));
         return target.request(MediaType.APPLICATION_JSON_TYPE)
                                         .post(Entity.entity(entity,  MediaType.APPLICATION_JSON_TYPE))
                                         .readEntity(BigDecimal.class);
     }
 
-
     public BigDecimal callCalculateAll(String servicePath, String clientId) {
-        target = client.target("http://localhost:"+ port+ servicePath+ "/id/"+clientId);
-        return target.request(MediaType.APPLICATION_JSON_TYPE).get().readEntity(BigDecimal.class);
+        target = client.target(createUrl(servicePath));
+        return target.path("id").path(clientId)
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .get().readEntity(BigDecimal.class);
+    }
+
+
+    private String createUrl(String servicePath) {
+        return "http://localhost:"+ port+ servicePath;
     }
 }
