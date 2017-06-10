@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 
 public class CalculatorServiceTest {
 
-    private final CalculatorService calculatorService = new CalculatorService(null, null, null, null, new DealValidator(), new ClientValidator());
+    private final CalculatorService calculatorService = new CalculatorServiceImpl(null, null, null, null, new DealValidator(), new ClientValidator());
 
     @Test
     public void givenNullDealThenCalculateReturnShouldReturnZero() throws Exception {
